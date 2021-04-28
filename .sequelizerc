@@ -1,0 +1,30 @@
+const path = require('path')
+
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config({
+    path: '.env.development',
+  })
+} else {
+  require('dotenv').config({
+    path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
+  })
+}
+
+module.exports = {
+  config: path.resolve(
+    process.env.ORIGIN_SEQUELIZE,
+    'config',
+    process.env.DATABASE_CONFIG_SEQUELIZE
+  ),
+  'models-path': path.resolve(process.env.ORIGIN_SEQUELIZE, 'app', 'models'),
+  'seeders-path': path.resolve(
+    process.env.ORIGIN_SEQUELIZE,
+    'database',
+    'seeders'
+  ),
+  'migrations-path': path.resolve(
+    process.env.ORIGIN_SEQUELIZE,
+    'database',
+    'migrations'
+  ),
+}
