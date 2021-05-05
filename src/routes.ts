@@ -25,15 +25,15 @@ router.patch(
 router.delete('/users/:id_users', authentication.auth, UsersControllers.delete)
 
 //tools
-router.get('/tools', authentication.auth, ToolsControllers.index)
-router.post('/tools/:id_users', authentication.auth, ToolsControllers.create)
+router.get('/users/tools/:id_users', authentication.auth, ToolsControllers.index)
+router.post('/users/tools/:id_users', authentication.auth, ToolsControllers.create)
 router.put(
-  '/tools/:id_tools/user/:id_users',
+  '/users/:id_users/tools/:id_tools',
   authentication.auth,
   ToolsControllers.update
 )
 router.delete(
-  '/tools/:id_tools/user/:id_users',
+  '/users/:id_users/tools/:id_tools',
   authentication.auth,
   ToolsControllers.delete
 )
@@ -41,8 +41,8 @@ router.delete(
 //tags
 router.get('/tags', authentication.auth, TagsControllers.index)
 router.post('/tags', authentication.auth, TagsControllers.create)
-router.put('/tags/:id_tags', authentication.auth, TagsControllers.update)
-router.delete('/tags/:id_tags', authentication.auth, TagsControllers.delete)
+router.put('/tags/:id_tag', authentication.auth, TagsControllers.update)
+router.delete('/tags/:id_tag', authentication.auth, TagsControllers.delete)
 
 // admin
 router.get(
