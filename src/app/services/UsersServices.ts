@@ -26,12 +26,6 @@ class UsersServices {
           {
             association: 'tools',
             order: [['id', 'DESC']],
-            include: [
-              {
-                association: 'tags-tools',
-                order: [['id', 'DESC']],
-              },
-            ],
           },
         ],
       })
@@ -44,17 +38,6 @@ class UsersServices {
           {
             association: 'tools',
             order: [['id', 'DESC']],
-            include: [
-              {
-                association: 'tags-tools',
-                order: [['id', 'DESC']],
-                where: {
-                  users_tags: {
-                    [Op.like]: tag,
-                  },
-                },
-              },
-            ],
           },
         ],
       })
@@ -95,7 +78,7 @@ class UsersServices {
     const user = await User.findOne({ where: { email } })
 
     if (!user) {
-      if (codeSecret == process.env.CODE_SECRET_ADMIN) {
+      if (codeSecret === process.env.CODE_SECRET_ADMIN) {
         const userCreated = await User.create({
           uuid: v4(),
           name,
@@ -126,8 +109,7 @@ class UsersServices {
     codeSecret: string = ''
   ) {
     const userVerify = await User.findOne({ where: { email } })
-
-    if (userVerify.id != id_users && userVerify) {
+    if (userVerify.dataValues.id != id_users && userVerify) {
       return 'another user has this email'
     }
 
