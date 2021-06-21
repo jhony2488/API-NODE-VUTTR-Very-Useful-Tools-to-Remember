@@ -43,9 +43,8 @@ class UsersController implements CRUDUser {
         },
         process.env.APP_SECRET
       )
-
       return res.header('auth-token', token).json({
-        data: { token, id: user.id, uuid: user.uuid },
+        data: { id: user.id, uuid: user.uuid },
       })
     } catch (err) {
       /* #swagger.responses[400] = {
